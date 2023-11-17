@@ -4,8 +4,10 @@
 #include <fstream>
 
 vector<string> FileManager::ReadFileAndSplit(const string& filename) {
+    string file_path = "../datas/" + filename;
     vector<string> result;
-    std::ifstream inputFile(filename);
+
+    std::ifstream inputFile(file_path);
 
     if (!inputFile.is_open()) {
         std::cerr << "Error: Could not open the file: " << filename << std::endl;
@@ -26,7 +28,9 @@ vector<string> FileManager::ReadFileAndSplit(const string& filename) {
 }
 
 void FileManager::WriteDataToFile(const string& filename, const vector<string>& datas) {
-    std::ofstream outputFile(filename);
+    string file_path = "../output/" + filename;
+
+    std::ofstream outputFile(file_path);
 
     if (!outputFile.is_open()) {
         std::cerr << "Error: Could not open the file." << std::endl;
