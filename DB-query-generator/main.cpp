@@ -5,15 +5,19 @@ using namespace std;
 
 int main() {
     FileManager fileManager;
-    CreateQuery creator = CreateQuery("table_Name");
+    CreateQuery creator = CreateQuery("직원");
     
     /* Attribute 설정 */
-    creator.AddAttributeNumber("id", 10000, 69999, true);
-    creator.AddAttributeString("name", fileManager.ReadFileAndSplit("text.txt"), true);
-    creator.AddAttributeDate("day", 1980, false);
-    
+    creator.AddAttributeString("직원번호", fileManager.ReadFileAndSplit("sample_직원_직원번호.txt"), true);
+    creator.AddAttributeString("직원명", fileManager.ReadFileAndSplit("sample_직원_이름.txt"), true);
+    creator.AddAttributeString("주민등록번호", fileManager.ReadFileAndSplit("sample_직원_주민등록번호.txt"), true);
+    creator.AddAttributeString("최종학력", fileManager.ReadFileLineByLine("sample_직원_최종학력.txt"));
+    creator.AddAttributeString("직위", fileManager.ReadFileAndSplit("sample_직원_직위.txt"));
+    creator.AddAttributeNumber("소속부서", 101, 104);
+    creator.AddAttributeNumber("정보 권한 등급", 1, 1);
+
     /* 쿼리 생성 */
-    int createAmount = 100; //생성 개수
+    int createAmount = 70; //생성 개수
     vector<string> datas = creator.CreateDatabaseInsertQueries(createAmount);
 
     
@@ -22,7 +26,7 @@ int main() {
     }
     
     /* txt파일로 */
-    fileManager.WriteDataToFile("output.txt", datas);
+    fileManager.WriteDataToFile("개발자.txt", datas);
 
     return 0;
 }

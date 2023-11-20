@@ -3,9 +3,9 @@
 #include <sstream>
 #include <fstream>
 
-vector<string> FileManager::ReadFileAndSplit(const string& filename) {
-    string file_path = "../datas/" + filename;
-    vector<string> result;
+std::vector<std::string> FileManager::ReadFileAndSplit(const std::string& filename) {
+    std::string file_path = "../datas/" + filename;
+    std::vector<std::string> result;
 
     std::ifstream inputFile(file_path);
 
@@ -19,7 +19,7 @@ vector<string> FileManager::ReadFileAndSplit(const string& filename) {
         std::istringstream iss(line);
         std::string token;
 
-        while (std::getline(iss, token, ' ')) {
+        while (iss >> token) {
             result.push_back(token);
         }
     }
@@ -27,8 +27,27 @@ vector<string> FileManager::ReadFileAndSplit(const string& filename) {
     return result;
 }
 
+std::vector<std::string> FileManager::ReadFileLineByLine(const std::string& filename) {
+    std::string file_path = "../datas/" + filename;
+    std::vector<std::string> result;
+
+    std::ifstream inputFile(file_path);
+
+    if (!inputFile.is_open()) {
+        std::cerr << "에러: 파일을 열 수 없습니다: " << filename << std::endl;
+        return result;
+    }
+
+    std::string line;
+    while (std::getline(inputFile, line)) {
+        result.push_back(line);
+    }
+
+    return result;
+}
+
 void FileManager::WriteDataToFile(const string& filename, const vector<string>& datas) {
-    string file_path = "../output/" + filename;
+    string file_path = "../outputs/" + filename;
 
     std::ofstream outputFile(file_path);
 
