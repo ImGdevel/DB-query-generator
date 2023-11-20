@@ -18,6 +18,13 @@ CreateQuery::~CreateQuery() {
     attributes.clear();
 }
 
+/// <summary>
+/// 정수형 데이터 생성 : rangeFirst ~ rangeLast 범위내 데이터 생성
+/// </summary>
+/// <param name="attributeName"> 속성이름 </param>
+/// <param name="rangeFirst"> 시작 범위</param>
+/// <param name="rangeLast"> 마지막 범위 </param>
+/// <param name="idUnique"> 유니크 여부 </param>
 void CreateQuery::AddAttributeNumber(string attributeName, int rangeFirst, int rangeLast, bool idUnique)
 {
     if (rangeFirst > rangeLast) { 
@@ -27,11 +34,24 @@ void CreateQuery::AddAttributeNumber(string attributeName, int rangeFirst, int r
     attributes.push_back(new AttributeNumber(attributeName, rangeFirst, rangeLast, idUnique));
 }
 
+/// <summary>
+/// 문자형 데이터 생성 : values 내 데이터 중 랜덤 생성
+/// </summary>
+/// <param name="attributeName"> 속성이름 </param>
+/// <param name="stringList"> 문자 데이터 집합 </param>
+/// <param name="idUnique"> 유니크 여부 </param>
 void CreateQuery::AddAttributeString(string attributeName, vector<string> stringList, bool idUnique)
 {
     attributes.push_back(new AttributeString(attributeName, stringList, idUnique));
 }
 
+/// <summary>
+/// 날자형 데이터 생성 : _startYear ~ 현제 시각 중 랜덤 생성
+/// </summary>
+/// <param name="attributeName"> 속성이름 </param>
+/// <param name="startYear"> 시작년도</param>
+/// <param name="includeTime"> 시간 표시여부 </param>
+/// <param name="idUnique"> 유니크 여부 </param>
 void CreateQuery::AddAttributeDate(string attributeName, int startYear, bool includeTime, bool idUnique)
 {
     attributes.push_back(new AttributeDate(attributeName, startYear, includeTime, idUnique));

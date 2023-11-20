@@ -3,6 +3,12 @@
 #include <sstream>
 #include <fstream>
 
+
+/// <summary>
+/// 폴더 datas에 있는 파일을 공백으로 데이터를 구분하여 데이터를 vector<string> 반환합니다.
+/// </summary>
+/// <param name="filename">파일 이름</param>
+/// <returns>파일 데이터</returns>
 std::vector<std::string> FileManager::ReadFileAndSplit(const std::string& filename) {
     std::string file_path = "../datas/" + filename;
     std::vector<std::string> result;
@@ -27,6 +33,12 @@ std::vector<std::string> FileManager::ReadFileAndSplit(const std::string& filena
     return result;
 }
 
+
+/// <summary>
+/// 폴더 datas에 있는 파일을 Line 단위로 읽고 데이터를 구분하여 데이터를 vector<string> 반환합니다.
+/// </summary>
+/// <param name="filename"></param>
+/// <returns></returns>
 std::vector<std::string> FileManager::ReadFileLineByLine(const std::string& filename) {
     std::string file_path = "../datas/" + filename;
     std::vector<std::string> result;
@@ -46,6 +58,11 @@ std::vector<std::string> FileManager::ReadFileLineByLine(const std::string& file
     return result;
 }
 
+/// <summary>
+/// 데이터를 outputs폴더에 저장합니다.
+/// </summary>
+/// <param name="filename">저장할 파일 이름</param>
+/// <param name="datas">데이터</param>
 void FileManager::WriteDataToFile(const string& filename, const vector<string>& datas) {
     string file_path = "../outputs/" + filename;
 

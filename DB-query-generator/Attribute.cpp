@@ -9,6 +9,7 @@
 Attribute::Attribute(string _name, bool _isUnique)
 	: name(_name), isUnique(_isUnique) {}
 
+
 AttributeNumber::AttributeNumber(string _name, int _rangeFirst, int _rangeLast, bool _isUnique)
 	: Attribute(_name, _isUnique), rangeFirst(_rangeFirst), rangeLast(_rangeLast) {}
 
@@ -17,7 +18,6 @@ AttributeString::AttributeString(string _name, vector<string> _values, bool _isU
 
 AttributeDate::AttributeDate(string _name, int _startYear, bool _includeTime, bool _isUnique)
 	: Attribute(_name, _isUnique), startYear(_startYear), includeTime(_includeTime) {}
-
 
 string AttributeNumber::GenerateRandomValue() const {
     static std::random_device rd;
