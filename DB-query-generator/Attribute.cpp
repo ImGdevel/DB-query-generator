@@ -20,18 +20,14 @@ AttributeDate::AttributeDate(string _name, int _startYear, bool _includeTime, bo
 	: Attribute(_name, _isUnique), startYear(_startYear), includeTime(_includeTime) {}
 
 string AttributeNumber::GenerateRandomValue() const {
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(rangeFirst, rangeLast);
-    return std::to_string(dis(gen));
+    int randomValue = std::rand() % (rangeLast - rangeFirst + 1) + rangeFirst;
+    return std::to_string(randomValue);
 }
 
 string AttributeString::GenerateRandomValue() const
 {
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(0, values.size() - 1);
-    return values[dis(gen)];
+    int randomIndex = std::rand() % values.size();
+    return values[randomIndex];
 }
 
 string AttributeDate::GenerateRandomValue() const
@@ -40,10 +36,7 @@ string AttributeDate::GenerateRandomValue() const
     struct tm* timeinfo = std::localtime(&currentYear);
     int currentYearInt = timeinfo->tm_year + 1900;
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dis(startYear, currentYearInt);
-    int randomYear = dis(gen);
+    int randomYear = std::rand() % (currentYearInt - startYear + 1) + startYear;
 
     std::ostringstream dateValue;
     dateValue << std::setw(4) << std::setfill('0') << randomYear << "-";
